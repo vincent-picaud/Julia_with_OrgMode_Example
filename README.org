@@ -58,7 +58,8 @@ The proposed solution uses:
 
 Maybe I have forgotten something, just tell me (I am only using Linux). 
 
-There is a [[https://github.com/vincent-picaud/Julia_with_OrgMode_Example][GitHub repository]] to reproduce results of this post.
+There is a [[https://github.com/vincent-picaud/Julia_with_OrgMode_Example][GitHub repository]] to reproduce results of this post. The
+*example.pdf* generated file is also present.
 
 * Emacs configuration
 
@@ -181,7 +182,7 @@ by *minted* for PDF export.
 
 ** Your notebook 
 
-Now this is the beginning of your notebook. You can use Org as usual...
+Now this is the beginning of our notebook. One can use Org as usual...
 
 #+HEADER: :noweb-ref example.org
 #+BEGIN_SRC md
@@ -197,7 +198,7 @@ using Plots
 ,** UTF8 support + escape math equation
 Note that UTF8 is supported (the \alpha variable) :
 
-,#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+,#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results silent :wrap "SRC julia :eval never"
 # Generate a matrix $a_{i,j}=\mathcal{U}([0,1[)$
 α=rand(4,5)
 ,#+END_SRC
@@ -205,9 +206,9 @@ Note that UTF8 is supported (the \alpha variable) :
 ,** Long lines are wrapped
 
 ,#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
-⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} = kron(a,b);
+function ⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} kron(a,b) end;
 
-β=rand(2,3);
+β=rand(2,5);
 γ = α ⊗ β
 ,#+END_SRC
 
@@ -234,20 +235,12 @@ savefig("example.png")
 
 ,** Org with bibliography
 
-We have seen how to run some Julia codes. 
-
-You also have access to all Org mode functionalities. 
-
-For instance painless numbered equations:
-
 \begin{align}
 \label{eq:one_eq}
 {\frac {d}{dt}}\iint _{\Sigma (t)}\mathbf {F} (\mathbf {r} ,t)\cdot d\mathbf {A} = & \iint _{\Sigma (t)}\left(\mathbf {F} _{t}(\mathbf {r},t)+\left[\nabla \cdot \mathbf {F} (\mathbf {r} ,t)\right]\mathbf {v}
 \right)\cdot d\mathbf {A} - \\
 & \oint _{\partial \Sigma (t)}\left[\mathbf{v} \times \mathbf {F} (\mathbf {r} ,t)\right]\cdot d\mathbf {s} \nonumber
 \end{align}
-
-You can use bibliographical references: 
 
 Eq. \ref{eq:one_eq} is demonstrated in cite:Flanders1973.
 #+END_SRC
