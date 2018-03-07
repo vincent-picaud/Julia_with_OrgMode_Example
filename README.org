@@ -56,9 +56,9 @@ The proposed solution uses:
   with *python3-pygments*, it does not on my computer. I have not
   investigate this.
 
-Maybe I have forgotten something, just tell me (I am only using Linux). To
-reproduce this post results I have created a minimal working example
-here: XXX GitHub. You will need the *Plots.jl* Julia package to create plots.
+Maybe I have forgotten something, just tell me (I am only using Linux). 
+
+There is a [[https://github.com/vincent-picaud/Julia_with_OrgMode_Example][GitHub repository]] to reproduce results of this post.
 
 * Emacs configuration
 
@@ -144,7 +144,7 @@ part.
 
 We  have the LaTeX configuration part:
 
-#+HEADER: :noweb-ref basic.org
+#+HEADER: :noweb-ref example.org
 #+BEGIN_SRC md
 # uses minted package instead of listings 
 ,#+LATEX_HEADER: \usepackage{minted}    
@@ -166,7 +166,7 @@ We  have the LaTeX configuration part:
 We then define our the Julia code highlight style. This style is used
 by *minted* for PDF export.
 
-#+HEADER: :noweb-ref basic.org
+#+HEADER: :noweb-ref example.org
 #+BEGIN_SRC md
 
 ,#+BEGIN_EXPORT latex
@@ -183,28 +183,28 @@ by *minted* for PDF export.
 
 Now this is the beginning of your notebook. You can use Org as usual...
 
-#+HEADER: :noweb-ref basic.org
+#+HEADER: :noweb-ref example.org
 #+BEGIN_SRC md
 ,#+TITLE: My title
 ,#+AUTHOR: author
 
 ,* Very simple demo
 
-,#+BEGIN_SRC julia  :evals no-export :session *demo_session* :exports none
+,#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports none
 using Plots
 ,#+END_SRC 
 
 ,** UTF8 support + escape math equation
 Note that UTF8 is supported (the \alpha variable) :
 
-,#+BEGIN_SRC julia :evals no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+,#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
 # Generate a matrix $a_{i,j}=\mathcal{U}([0,1[)$
 α=rand(4,5)
 ,#+END_SRC
 
 ,** Long lines are wrapped
 
-,#+BEGIN_SRC julia :evals no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+,#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
 ⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} = kron(a,b);
 
 β=rand(2,3);
@@ -216,13 +216,13 @@ Note that UTF8 is supported (the \alpha variable) :
 You can easily generate plots, one example from [[http://docs.juliaplots.org/latest/examples/pyplot/][Plots Julia package]],
  is used to generate Figure [[PolarPlot]].
 
-,#+BEGIN_SRC julia  :evals no-export :session *demo_session* :exports code :results silent
+,#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports code :results silent
 Θ = linspace(0,1.5π,100)
 r = abs(0.1 * randn(100) + sin.(3Θ))
 plot(Θ,r,proj=:polar,m=2)
 ,#+END_SRC
 
-,#+BEGIN_SRC julia  :evals no-export :session *demo_session* :results graphics :file example.png :exports results
+,#+BEGIN_SRC julia  :eval no-export :session *demo_session* :results graphics :file example.png :exports results
 savefig("example.png")
 ,#+END_SRC
 
@@ -256,7 +256,7 @@ Eq. \ref{eq:one_eq} is demonstrated in cite:Flanders1973.
 
 Now we reach a little trick to support both HTML and PDF bibliography exports: 
 
-#+HEADER: :noweb-ref basic.org
+#+HEADER: :noweb-ref example.org
 #+BEGIN_SRC md
 ,#+BEGIN_EXPORT latex
 \printbibliography
@@ -306,8 +306,8 @@ directive:
 Putting everything together you get the proposed solution. This is
 certainly not the cleanest approach, but I have not found simpler.
 
-#+BEGIN_SRC md :exports none :tangle yes :tangle basic.org :noweb yes 
-<<basic.org>>
+#+BEGIN_SRC md :exports none :tangle yes :tangle example.org :noweb yes 
+<<example.org>>
 #+END_SRC
 
 * The *my-bib.bib* file 
@@ -345,13 +345,13 @@ to start a fresh Emacs with our local configuration.
 ** Recomputing the notebook
 
 As I potentially have several notebooks to publish I have used the
-*:evals no-export* argument. By consequence the notebooks are not
+*:eval no-export* argument. By consequence the notebooks are not
 evaluated each time you publish but only once. If you want to
 recompute everything every time, simply remove this option. You can
 also use the [[https://orgmode.org/manual/cache.html][:cache]] option.
 
 By consequence, before exporting you must begin by a first evaluation
-of the notebook. Visit the *basic.org* buffer and do *M-x
+of the notebook. Visit the *example.org* buffer and do *M-x
 org-babel-execute-buffer* (or use the *C-c C-v b*
 shortcut). Attention, be sure that *Plots.jl* is installed.
 
@@ -371,7 +371,7 @@ error message.
 
 ** Exporting
 
-Still from the *basic.org* buffer, you can do:
+Still from the *example.org* buffer, you can do:
 - HTML export with: *C-c C-e h o*
 - PDF export with: *C-c C-e l o*
 
