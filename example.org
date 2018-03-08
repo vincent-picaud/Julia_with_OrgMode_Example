@@ -27,24 +27,24 @@
 
 * Very simple demo
 
-#+BEGIN_SRC julia  :evals no-export :session *demo_session* :exports none
+#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports none
 using Plots
 #+END_SRC 
 
 ** UTF8 support + escape math equation
 Note that UTF8 is supported (the \alpha variable) :
 
-#+BEGIN_SRC julia :evals no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results silent :wrap "SRC julia :eval never"
 # Generate a matrix $a_{i,j}=\mathcal{U}([0,1[)$
 α=rand(4,5)
 #+END_SRC
 
 ** Long lines are wrapped
 
-#+BEGIN_SRC julia :evals no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
-⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} = kron(a,b);
+#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+function ⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} kron(a,b) end;
 
-β=rand(2,3);
+β=rand(2,5);
 γ = α ⊗ β
 #+END_SRC
 
@@ -53,13 +53,13 @@ Note that UTF8 is supported (the \alpha variable) :
 You can easily generate plots, one example from [[http://docs.juliaplots.org/latest/examples/pyplot/][Plots Julia package]],
  is used to generate Figure [[PolarPlot]].
 
-#+BEGIN_SRC julia  :evals no-export :session *demo_session* :exports code :results silent
+#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports code :results silent
 Θ = linspace(0,1.5π,100)
 r = abs(0.1 * randn(100) + sin.(3Θ))
 plot(Θ,r,proj=:polar,m=2)
 #+END_SRC
 
-#+BEGIN_SRC julia  :evals no-export :session *demo_session* :results graphics :file example.png :exports results
+#+BEGIN_SRC julia  :eval no-export :session *demo_session* :results graphics :file example.png :exports results
 savefig("example.png")
 #+END_SRC
 
@@ -71,20 +71,12 @@ savefig("example.png")
 
 ** Org with bibliography
 
-We have seen how to run some Julia codes. 
-
-You also have access to all Org mode functionalities. 
-
-For instance painless numbered equations:
-
 \begin{align}
 \label{eq:one_eq}
 {\frac {d}{dt}}\iint _{\Sigma (t)}\mathbf {F} (\mathbf {r} ,t)\cdot d\mathbf {A} = & \iint _{\Sigma (t)}\left(\mathbf {F} _{t}(\mathbf {r},t)+\left[\nabla \cdot \mathbf {F} (\mathbf {r} ,t)\right]\mathbf {v}
 \right)\cdot d\mathbf {A} - \\
 & \oint _{\partial \Sigma (t)}\left[\mathbf{v} \times \mathbf {F} (\mathbf {r} ,t)\right]\cdot d\mathbf {s} \nonumber
 \end{align}
-
-You can use bibliographical references: 
 
 Eq. \ref{eq:one_eq} is demonstrated in cite:Flanders1973.
 #+BEGIN_EXPORT latex

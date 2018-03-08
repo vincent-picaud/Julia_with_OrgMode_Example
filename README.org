@@ -38,7 +38,7 @@ I get a solution which is certainly not perfect, ideas to improve it
 are welcomed.
 
 There are two points to take care of:
-+ LaTeX does not fully supports UTF8, nor its [[https://ctan.org/pkg/listings?lang=en][listings]] package.
++ LaTeX does not fully support UTF8, nor its [[https://ctan.org/pkg/listings?lang=en][listings]] package.
   - for UTF8 support I had to switch to [[http://www.luatex.org/][luatex]], [[http://biblatex-biber.sourceforge.net/][biber]] and
     [[https://ctan.org/pkg/minted][minted]] package
   - I also had to use proper fonts, [[https://dejavu-fonts.github.io/][DejaVu]], to support Greek
@@ -54,7 +54,7 @@ The proposed solution uses:
 - [[http://biblatex-biber.sourceforge.net/][biber]] : under Debian, the *biber* package,
 - [[http://pygments.org/][pygments]] : under Debian, the *python-pygments* package. Attention
   with *python3-pygments*, it does not on my computer. I have not
-  investigate this.
+  investigated this.
 
 Maybe I have forgotten something, just tell me (I am only using Linux). 
 
@@ -333,7 +333,7 @@ From project root directory type
 #+BEGIN_SRC bash :eval never
 emacs -q --load emacs_files/init.el
 #+END_SRC
-to start a fresh Emacs with our local configuration.
+to start a new Emacs with our local configuration.
 
 ** Recomputing the notebook
 
@@ -356,11 +356,11 @@ In the \ast{}demo_session\ast Julia session buffer you will certainly see this e
 ERROR: MethodError: no method matching start(::...)
 #+END_SRC
 
-This is not our fault, but a known problem
+This is not our fault, but a known problem (that would need a fix)
 [[https://discourse.julialang.org/t/julia-print-commands-not-working-in-emacs-org-mode/6944/4][julia-print-commands-not-working-in-emacs-org-mode]]. It does not affect
-the computed result (but only the output processing). One can use
-*:results output* with *println* workaround or simply ignore this
-error message.
+the computed result (but only the output processing). To get the right
+output (without the error message) one workaround is to restart
+computation of the source block (*C-c C-c*).
 
 ** Exporting
 
