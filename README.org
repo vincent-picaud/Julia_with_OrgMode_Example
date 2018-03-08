@@ -5,6 +5,7 @@
 #+BLOG: wordpress
 #+TITLE: Julia with Emacs Org mode 
 #+AUTHOR: Picaud V.
+#+CATEGORY: Julia, Emacs, Latex 
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usepackage{fontspec}
 #+LATEX_HEADER: \usepackage{verbatim} % for comment
@@ -180,7 +181,7 @@ by *minted* for PDF export.
 ,#+END_EXPORT
 #+END_SRC
 
-** Your notebook 
+** Our notebook 
 
 Now this is the beginning of our notebook. One can use Org as usual...
 
