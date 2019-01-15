@@ -1,3 +1,6 @@
+# jupyter-julia configuration
+#+PROPERTY: header-args:jupyter-julia :session *julia_session* :exports both :eval no-export :results raw drawer
+
 # uses minted package instead of listings 
 #+LATEX_HEADER: \usepackage{minted}    
 
@@ -27,47 +30,79 @@
 
 * Very simple demo
 
-#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports none
+#+BEGIN_SRC jupyter-julia  :exports none
 using Plots
+pyplot()
 #+END_SRC 
+
+#+RESULTS:
+:RESULTS:
+# Out[9]:
+: Plots.PyPlotBackend()
+:END:
 
 ** UTF8 support + escape math equation
 Note that UTF8 is supported (the \alpha variable) :
 
-#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results silent :wrap "SRC julia :eval never"
+#+BEGIN_SRC jupyter-julia
 # Generate a matrix $a_{i,j}=\mathcal{U}([0,1[)$
 α=rand(4,5)
 #+END_SRC
 
+#+RESULTS:
+:RESULTS:
+# Out[2]:
+#+BEGIN_EXAMPLE
+  4×5 Array{Float64,2}:
+  0.765567  0.194176  0.42481   0.423175  0.544963
+  0.015455  0.657287  0.897396  0.105376  0.32708
+  0.766883  0.972219  0.786103  0.19786   0.502019
+  0.155628  0.103567  0.868137  0.401009  0.128592
+#+END_EXAMPLE
+:END:
+
+
 ** Long lines are wrapped
 
-#+BEGIN_SRC julia :eval no-export :session *demo_session* :exports both :results output :wrap "SRC julia :eval never"
+#+BEGIN_SRC jupyter-julia
 function ⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number} kron(a,b) end;
 
 β=rand(2,5);
 γ = α ⊗ β
 #+END_SRC
 
+#+RESULTS:
+:RESULTS:
+# Out[131]:
+#+BEGIN_EXAMPLE
+  8×25 Array{Float64,2}:
+  0.593544  0.139327  0.438304   0.21103   …  0.199895   0.0962437  0.0419123
+  0.311079  0.457574  0.102635   0.277743     0.0468084  0.126669   0.210952
+  0.729961  0.171349  0.539041   0.259532     0.286095   0.137746   0.059986
+  0.382575  0.56274   0.126224   0.341578     0.0669934  0.181292   0.30192
+  0.537682  0.126214  0.397052   0.191169     0.424569   0.204418   0.0890201
+  0.281801  0.414509  0.0929756  0.251603  …  0.0994192  0.26904    0.448054
+  0.816652  0.191699  0.603057   0.290355     0.284411   0.136936   0.059633
+  0.42801   0.629571  0.141215   0.382144     0.0665991  0.180225   0.300143
+#+END_EXAMPLE
+:END:
+
 ** Plot example
 
 You can easily generate plots, one example from [[http://docs.juliaplots.org/latest/examples/pyplot/][Plots Julia package]],
  is used to generate Figure [[PolarPlot]].
 
-#+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports code :results silent
-Θ = linspace(0,1.5π,100)
-r = abs(0.1 * randn(100) + sin.(3Θ))
-plot(Θ,r,proj=:polar,m=2)
+#+BEGIN_SRC jupyter-julia :results file 
+Θ = range(0,stop=1.5π,length=100)
+r = abs.(0.1 * randn(100) + sin.(3Θ))
+plot(Θ,r,proj=:polar,m=2, fmt=:png)
 #+END_SRC
 
-#+BEGIN_SRC julia  :eval no-export :session *demo_session* :results graphics :file example.png :exports results
-savefig("example.png")
-#+END_SRC
-
-#+CAPTION: A polar plot.
-#+ATTR_HTML: :width 900px
 #+NAME: PolarPlot
 #+RESULTS:
-[[file:example.png]]
+[[file:# Out[55]:
+[[file:./obipy-resources/fgqYHO.png]]]]
+
 
 ** Org with bibliography
 

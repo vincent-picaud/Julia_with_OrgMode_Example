@@ -300,7 +300,7 @@ directive:
 Putting everything together you get the proposed solution. This is
 certainly not the cleanest approach, but I have not found simpler.
 
-#+BEGIN_SRC md :exports none :tangle yes :tangle example.org :noweb yes 
+#+BEGIN_SRC md :exports none :tangle yes :tangle old_example.org :noweb yes 
 <<example.org>>
 #+END_SRC
 
