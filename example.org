@@ -1,3 +1,5 @@
+# TODO: new ob-julia https://raw.githubusercontent.com/frederic-santos/ob-julia/master/ob-julia.el
+
 # uses minted package instead of listings 
 #+LATEX_HEADER: \usepackage{minted}    
 
@@ -48,14 +50,28 @@ function ⊗(a::AbstractArray{T},b::AbstractArray{S}) where {T<:Number,S<:Number
 γ = α ⊗ β
 #+END_SRC
 
+#+RESULTS:
+#+BEGIN_SRC julia :eval never
+
+ERROR: UndefVarError: writecsv not defined
+Stacktrace:
+ [1] top-level scope at none:0
+
+
+
+ERROR: UndefVarError: α not defined
+Stacktrace:
+ [1] top-level scope at none:0
+#+END_SRC
+
 ** Plot example
 
 You can easily generate plots, one example from [[http://docs.juliaplots.org/latest/examples/pyplot/][Plots Julia package]],
  is used to generate Figure [[PolarPlot]].
 
 #+BEGIN_SRC julia  :eval no-export :session *demo_session* :exports code :results silent
-Θ = linspace(0,1.5π,100)
-r = abs(0.1 * randn(100) + sin.(3Θ))
+Θ = range(0,stop=1.5π,length=100)
+r = abs.(0.1 * randn(100) + sin.(3Θ))
 plot(Θ,r,proj=:polar,m=2)
 #+END_SRC
 
